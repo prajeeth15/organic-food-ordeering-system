@@ -1,0 +1,171 @@
+{% extends 'webapp/base.html'%}
+{% block title %} Cart {% endblock %}
+
+{% block body %}
+<div class="container ">
+			<br>
+			<h3 class="text-info"><strong>Order Information :</strong></h3>
+			<br>
+				<table class="table table-hover table-bordered">
+					<thead>
+						<th>Item Name</th>
+						<th>Quantity</th>
+						<th>Price</th>
+					</thead>
+					{% for x in items %}
+							<tr><td>{{x.0}}</td><td>{{x.1}}</td><td>&#x20b9; {{x.2}}</td></tr>
+					{% endfor %}
+
+				</table>
+				<br>
+				<span><b>Total price: </b></span><span> &#x20b9; {{totalprice}}
+				</span>
+				<br>
+				<br>
+                                <h2>-----------------------------------------------------------------------------------------------------------------------------------------------------------------</h2> 
+				<br>
+                                <h2><mark>Your details:</mark></h2>
+                                <br>
+                                         <form action="" method="POST">
+							{% csrf_token %}
+                                                
+							<span><strong>Delivery Address*:</strong></span>
+							<br>
+							<br>
+							<div><input type="text" name="address" style="width:40%; height: 50px;color:#2196F3;" required/></div>
+							<input type="hidden" name="oid" value="{{oid}}">
+							<br>
+							
+                                                         <span><strong>Name*:</strong></span>
+							<br>
+							<br>
+							<div><input type="text" name="name" style="width:10%; height: 30px;" required/></div>
+							<input type="hidden" name="oid" value="{{oid}}">
+							<br>
+                                                         <span><strong>Phone number*:</strong></span>
+							<br>
+							<br>
+							<div><input type="number" name="number" style="width:20%; height: 30px;" required/></div>
+							<input type="hidden" name="oid" value="{{oid}}">
+							<br>
+                                                         <span><strong>Age*:</strong></span>
+							<br>
+							<br>
+							<div><input type="number" name="age" style="width:10%; height: 30px;" required/></div>
+							<input type="hidden" name="oid" value="{{oid}}">
+							<br>
+                                                         <span><strong>Email*:</strong></span>
+							<br>
+							<br>
+							<div><input type="text" name="mail" placeholder="mjprajee@gmail.com" style="width:20%; height: 30px;" required/></div>
+							<input type="hidden" name="oid" value="{{oid}}">
+							<br>
+                                                         <span><strong>City*:</strong></span>
+							<br>
+							<br>
+							<div><input type="text" name="city" style="width:20%; height: 30px;" required/></div>
+							<input type="hidden" name="oid" value="{{oid}}">
+							<br>
+                                                         <span><h2><mark>Payment*:</mark></h2></span>
+                                                        <br>
+                                                        <br>
+                                                         <span><strong>Name on Card:</strong></span>
+							<br>
+							<br>
+                                                        
+							<div><input type="text" name="pay" style="width:20%; height: 30px;" required/></div>
+							<input type="hidden" name="oid" value="{{oid}}">
+							<br>
+                                                        <span><strong>Credit card number:</strong></span>
+							<br>
+							<br>
+							<div><input type="text" name="pay" placeholder="1111-2222-3333-4444" style="width:20%; height: 30px;" required/></div>
+							<input type="hidden" name="oid" value="{{oid}}">
+							<br>
+                                                        <span><strong>CCV:</strong></span>
+							<br>
+							<br>
+							<div><input type="number" name="pay" placeholder="114" style="width:20%; height: 30px;" required/></div>
+							<input type="hidden" name="oid" value="{{oid}}">
+							<br>
+                                                        <span><strong>Expiry date:</strong></span>
+							<br>
+							<br>
+							<div><input type="date" name="pay" placeholder="7/28/2022" style="width:20%; height: 30px;" required/></div>
+							<input type="hidden" name="oid" value="{{oid}}">
+							<br>
+                                                        <div><input type="checkbox" checked="checked" name="pay"> I Agree </div>
+							<input type="hidden" name="oid" value="{{oid}}">
+							<br>
+                                     <h2>.................................................................................................................................................</h2> 
+                                       <br>
+                                                        <h2><mark>Feedback*</mark>(rating and review)</h2> 
+                <br>
+                    <p> Please provide your feedback below: </p>
+                 <br>
+                    <form role="form" method="post" id="reused_form">
+                        <div class="row">
+                            <div class="col-sm-12 form-group">
+                                <label>How do you rate the website and your overall experience?</label>
+                                <p>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="experience" id="radio_experience" value="bad" >
+                                        Bad 
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="experience" id="radio_experience" value="average" >
+                                        Average 
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="experience" id="radio_experience" value="good" >
+                                        Good 
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="number" name="experience" id="radio_experience" value="rate us" min="1" max="10">
+                                        Rate us(1-10)
+                                    </label>
+                                    
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 form-group">
+                                <label for="comments"> Comments:</label>
+                                <textarea class="form-control" type="textarea" name="comments" id="comments" placeholder="Your Comments" maxlength="6000" rows="7"></textarea>
+                            </div>
+                             <br>
+                            <div class="col-sm-12 form-group">
+                                <label for="comments"> Any queries:</label>
+                                <textarea class="form-control" type="textarea" name="comments" id="comments" placeholder="Your queries" maxlength="6000" rows="7"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 form-group">
+                                <label for="name"> Your Name:</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label for="email"> Email:</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 form-group">
+                                
+                               
+                                <input type="submit" class="btn btn-success btn-lg" value="Order/Post" name="submit">
+                            </div>
+                        </div>
+                    </form>
+                    <div id="success_message" style="width:100%; height:100%; display:none; "> <h3>Posted your feedback successfully!</h3> </div>
+                    <div id="error_message" style="width:100%; height:100%; display:none; "> <h3>Error</h3> Sorry there was an error sending your form. </div>
+                </div>
+            </div>
+        </div>
+                
+                                                        
+							
+
+</div>
+
+{% endblock %}
